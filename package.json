@@ -1,0 +1,17 @@
+{
+  "name": "instagram-platform",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Manage Instagram Business/Creator accounts via Meta Graph API (profile, media, comments, insights).",
+  "author": {
+    "name": "tinkabot"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "main": "./server/index.mjs",
+  "scripts": {
+    "start": "node ./server/index.mjs"
+  }
+}

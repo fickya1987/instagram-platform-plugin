@@ -1,4 +1,7 @@
 node_modules/
 .env
+.env.*
+!.env.example
 *.pem
+*.log
 .DS_Store

@@ -1,0 +1,33 @@
+{
+  "name": "instagram-platform",
+  "version": "0.1.0",
+  "description": "Manage Instagram Business/Creator accounts via Meta Graph API (profile, media, comments, insights).",
+  "author": {
+    "name": "tinkabot"
+  },
+  "keywords": [
+    "instagram",
+    "meta",
+    "graph-api",
+    "mcp"
+  ],
+  "variables": {
+    "type": "object",
+    "properties": {
+      "META_ACCESS_TOKEN": {
+        "type": "string",
+        "title": "Meta access token",
+        "description": "Facebook User access token for Instagram Graph API with Facebook Login. Required. Do not commit this value."
+      },
+      "IG_USER_ID": {
+        "type": "string",
+        "title": "Instagram professional account ID",
+        "description": "IG User ID of the Business or Creator account linked to a Facebook Page. Required."
+      }
+    },
+    "required": [
+      "META_ACCESS_TOKEN",
+      "IG_USER_ID"
+    ]
+  }
+}
