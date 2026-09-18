@@ -546,6 +546,15 @@ if (missingAtBoot.length) {
   );
 }
 
+let pending = 0;
+let stdinClosed = false;
+
+function maybeExit() {
+  if (stdinClosed && pending === 0) {
+    process.exit(0);
+  }
+}
+
 const rl = readline.createInterface({ input: process.stdin });
 rl.on("line", (line) => {
   const trimmed = line.trim();
@@ -563,20 +572,27 @@ rl.on("line", (line) => {
   }
   const messages = Array.isArray(parsed) ? parsed : [parsed];
   for (const message of messages) {
-    Promise.resolve(dispatch(message)).catch((error) => {
-      if (message?.id !== undefined) {
-        send({
-          jsonrpc: "2.0",
-          id: message.id,
-          error: {
-            code: -32603,
-            message: redactSecrets(error?.message ?? "Internal error"),
-          },
-        });
-      }
-    });
+    pending += 1;
+    Promise.resolve(dispatch(message))
+      .catch((error) => {
+        if (message?.id !== undefined) {
+          send({
+            jsonrpc: "2.0",
+            id: message.id,
+            error: {
+              code: -32603,
+              message: redactSecrets(error?.message ?? "Internal error"),
+            },
+          });
+        }
+      })
+      .finally(() => {
+        pending -= 1;
+        maybeExit();
+      });
   }
 });
 rl.on("close", () => {
-  process.exit(0);
+  stdinClosed = true;
+  maybeExit();
 });
