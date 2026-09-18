@@ -1,0 +1,15 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "instagram-platform",
+  "version": "0.1.0",
+  "description": "Manage Instagram Business/Creator accounts via Meta Graph API (profile, media, comments, insights).",
+  "author": {
+    "name": "tinkabot"
+  },
+  "keywords": [
+    "instagram",
+    "meta",
+    "graph-api",
+    "mcp"
+  ]
+}

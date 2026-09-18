@@ -1,0 +1,17 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "instagram-platform": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "./server/index.mjs"
+      ],
+      "cwd": "${CURSOR_PLUGIN_ROOT}",
+      "env": {
+        "META_ACCESS_TOKEN": "${META_ACCESS_TOKEN}",
+        "IG_USER_ID": "${IG_USER_ID}"
+      }
+    }
+  }
+}
